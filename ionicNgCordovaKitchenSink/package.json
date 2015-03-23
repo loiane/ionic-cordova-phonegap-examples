@@ -1,7 +1,7 @@
 {
-  "name": "ionicncordovakitchensink",
+  "name": "ionicngcordovakitchensink",
   "version": "1.0.0",
-  "description": "ionicNCordovaKitchenSink: An Ionic project",
+  "description": "ionicNgCordovaKitchenSink: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
