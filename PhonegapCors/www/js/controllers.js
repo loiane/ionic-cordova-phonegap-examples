@@ -1,48 +1,39 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-  $scope.loginData = {};
+    .controller('CORSDisabledCtrl', function ($scope, $http) {
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+        $scope.loadCountries = function(){
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+            $scope.countries = [];
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+            var ajaxRequest = $http.get("http://localhost/cors-phonegap/getcountries-nocors.php");
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+            ajaxRequest.success(function(data, status, headers, config) {
+                $scope.countries = data;
+                alert("Countries loaded!");
+            });
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
+            ajaxRequest.error(function(data, status, headers, config) {
+                alert("AJAX failed!");
+            });
+        }
+    })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+    .controller('CORSEnabledCtrl', function ($scope, $http) {
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+        $scope.loadCountries = function() {
+
+            $scope.countries = [];
+
+            var ajaxRequest = $http.get("http://localhost/cors-phonegap/getcountries-cors.php");
+
+            ajaxRequest.success(function (data, status, headers, config) {
+                $scope.countries = data;
+                alert("Countries loaded!");
+            });
+
+            ajaxRequest.error(function (data, status, headers, config) {
+                alert("AJAX failed!");
+            });
+        };
+    });
