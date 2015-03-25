@@ -31,10 +31,13 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1>Device</h1>
+            <div id="deviceready">
+                <p>Cordova version: <span id="cordova"></span></p>
+                <p>Model: <span id="model"></span></p>
+                <p>Platform: <span id="platform"></span></p>
+                <p>UUID: <span id="uuid"></span></p>
+                <p>Version: <span id="version"></span></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
