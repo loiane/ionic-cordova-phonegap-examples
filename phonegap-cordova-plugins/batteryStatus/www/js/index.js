@@ -37,13 +37,16 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        window.addEventListener("batterystatus", onBatteryStatus, false);
 
-        console.log('Received Event: ' + id);
+        function onBatteryStatus(info) {
+            // Handle the online event
+            alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
+
+            document.getElementById("level").innerHTML = info.level;
+            document.getElementById("isPlugged").innerHTML = info.isPlugged;
+        }
+
     }
 };
