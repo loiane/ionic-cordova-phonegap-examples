@@ -20,6 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+
     },
     // Bind Event Listeners
     //
@@ -33,17 +34,49 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    getCurrentAcceleration: function(){
 
-        console.log('Received Event: ' + id);
+        function onSuccess(acceleration) {
+
+            document.getElementById("x").innerHTML = acceleration.x;
+            document.getElementById("y").innerHTML = acceleration.y;
+            document.getElementById("z").innerHTML = acceleration.z ;
+            document.getElementById("timestamp").innerHTML = acceleration.timestamp ;
+        }
+
+        function onError() {
+            alert('onError!');
+        }
+
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    },
+
+    watchAcceleration: function(){
+
+        function onSuccess(acceleration) {
+
+            document.getElementById("x").innerHTML = acceleration.x;
+            document.getElementById("y").innerHTML = acceleration.y;
+            document.getElementById("z").innerHTML = acceleration.z ;
+            document.getElementById("timestamp").innerHTML = acceleration.timestamp ;
+        }
+
+        function onError() {
+            alert('onError!');
+        }
+
+        var options = { frequency: 3000 };  // Update every 3 seconds
+
+        app.watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    },
+
+    clearWatch: function(){
+
+        if (app.watchID){
+            navigator.accelerometer.clearWatch(app.watchID);
+        }
     }
 };

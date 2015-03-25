@@ -31,10 +31,15 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1>Accelerometer</h1>
+            <div id="deviceready">
+                <p><button onclick="app.getCurrentAcceleration();">Get Current Acceleration</button></p>
+                <p><button onclick="app.watchAcceleration();">Watch Acceleration</button></p>
+                <p><button onclick="app.clearWatch();">Clear Watch</button></p>
+                <p>X: <span id="x"></span></p>
+                <p>Y: <span id="y"></span></p>
+                <p>Z: <span id="z"></span></p>
+                <p>Timestamp: <span id="timestamp"></span></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
