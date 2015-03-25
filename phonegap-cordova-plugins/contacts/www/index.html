@@ -31,10 +31,11 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1>Contacts</h1>
+            <div id="deviceready">
+                <p><button onclick="app.listContacts();">Display Contacts</button></p>
+                <p><button onclick="app.pickContact();">Pick a Contact</button></p>
+                <p><button onclick="app.createContact();">Create a Contact</button></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>

@@ -33,17 +33,50 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    listContacts: function(){
 
-        console.log('Received Event: ' + id);
+        function onSuccess(contacts) {
+            alert('Found ' + contacts.length + ' contacts.');
+        }
+
+        function onError(contactError) {
+            alert('onError!');
+        }
+
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        options.desiredFields = [navigator.contacts.fieldType.id];
+        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+
+        navigator.contacts.find(fields, onSuccess, onError, options);
+    },
+
+    pickContact: function(){
+
+        navigator.contacts.pickContact(function(contact){
+            alert('The following contact has been selected:' + JSON.stringify(contact));
+        },function(err){
+            console.log('Error: ' + err);
+        });
+    },
+
+    createContact: function(){
+
+        var myContact = navigator.contacts.create({"displayName": "AAA Test Phonegap"});
+
+        if (myContact){
+            myContact.save(onSuccess,onError);
+        }
+
+        function onSuccess(contact) {
+            alert("Save Success");
+        }
+
+        function onError(contactError) {
+            alert("Error = " + contactError.code);
+        }
     }
 };
