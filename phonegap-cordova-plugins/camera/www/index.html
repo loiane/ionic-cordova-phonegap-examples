@@ -31,10 +31,10 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1>Camera</h1>
+            <div id="deviceready">
+                <p><button onclick="app.capturePhoto();">Capture Photo</button></p>
+                <p><img style="display:none;width:250px;height:250px;" id="myImage" src="" /></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
