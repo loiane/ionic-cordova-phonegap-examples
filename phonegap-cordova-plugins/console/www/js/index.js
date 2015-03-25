@@ -45,5 +45,8 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+
+        console.log('*** Devs aprovam mensagem no console!');
+
     }
 };
