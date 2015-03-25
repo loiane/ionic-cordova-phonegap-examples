@@ -33,17 +33,52 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    alert: function() {
+        function alertDismissed() {
+            alert('user closed the alert');
+        }
 
-        console.log('Received Event: ' + id);
+        navigator.notification.alert(
+            'Phonegap/Codovar alert example',  // message
+            alertDismissed,      // callback
+            'Title',            // title
+            'My button'         // buttonName
+        );
+    },
+
+    confirm: function() {
+
+        function onConfirm(buttonIndex) {
+            alert('You selected button ' + buttonIndex);
+        }
+
+        navigator.notification.confirm(
+            'Phonegap/Codovar confirm example', // message
+            onConfirm,            // callback to invoke with index of button pressed
+            'Title',           // title
+            ['Restart','Exit']     // buttonLabels
+        );
+    },
+
+    prompt: function(){
+
+        function onPrompt(results) {
+            alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
+        }
+
+        navigator.notification.prompt(
+            'Please enter your name',  // message
+            onPrompt,                  // callback to invoke
+            'Registration',            // title
+            ['Ok','Exit'],             // buttonLabels
+            'Phonegap/Cordova'         // defaultText
+        );
+    },
+
+    beep: function(){
+        navigator.notification.beep(3);
     }
 };

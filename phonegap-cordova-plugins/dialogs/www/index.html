@@ -32,9 +32,11 @@
     <body>
         <div class="app">
             <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <div id="deviceready">
+                <p><button onclick="app.alert();">Alert</button></p>
+                <p><button onclick="app.confirm();">Confirm</button></p>
+                <p><button onclick="app.prompt();">Prompt</button></p>
+                <p><button onclick="app.beep();">Beep</button></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
