@@ -33,17 +33,43 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    getCurrentHeading: function(){
 
-        console.log('Received Event: ' + id);
+        function onSuccess(heading) {
+            document.getElementById("magneticHeading").innerHTML = heading.magneticHeading;
+        }
+
+        function onError(error) {
+            alert('CompassError: ' + error.code);
+        }
+
+        navigator.compass.getCurrentHeading(onSuccess, onError);
+    },
+
+    watchHeading: function(){
+
+        function onSuccess(heading) {
+            document.getElementById("magneticHeading").innerHTML = heading.magneticHeading;
+        }
+
+        function onError(error) {
+            alert('CompassError: ' + error.code);
+        }
+
+        var options = {
+            frequency: 3000
+        }; // Update every 3 seconds
+
+        app.watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+    },
+
+    clearWatch: function(){
+
+        if (app.watchID){
+            navigator.compass.clearWatch(app.watchID);
+        }
     }
 };

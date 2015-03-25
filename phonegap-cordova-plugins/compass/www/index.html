@@ -31,10 +31,12 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <h1>Compass</h1>
+            <div id="deviceready">
+                <p><button onclick="app.getCurrentHeading();">Get Current Heading</button></p>
+                <p><button onclick="app.watchHeading();">Watch Heading</button></p>
+                <p><button onclick="app.clearWatch();">Clear Watch</button></p>
+                <p>Heading: <span id="magneticHeading"></span></p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
