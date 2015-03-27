@@ -1,0 +1,8 @@
+{
+    "org.apache.cordova.vibration": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.vibration"
+        }
+    }
+}
