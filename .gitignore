@@ -10,3 +10,5 @@
 .idea/misc.xml
 
 phonegap-cordova-plugins/batteryStatus/npm-debug.log
+
+.idea/
