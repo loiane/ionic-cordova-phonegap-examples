@@ -1,10 +1,11 @@
 angular.module('todo.controllers', [])
 
-    .controller('TodoCtrl', function($scope) {
+    .controller('TasksCtrl', function($scope) {
+
         $scope.tasks = [
-            { title: 'Collect coins' },
-            { title: 'Eat mushrooms' },
-            { title: 'Get high enough to grab the flag' },
-            { title: 'Find the Princess' }
+            { name: 'Collect coins' },
+            { name: 'Eat mushrooms' },
+            { name: 'Get high enough to grab the flag' },
+            { name: 'Find the Princess' }
         ];
     });

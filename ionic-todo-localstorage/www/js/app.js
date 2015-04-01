@@ -18,16 +18,16 @@ angular.module('todo', ['ionic', 'todo.controllers'])
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    /*.config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
-            .state('app', {
-                url: "/app",
-                abstract: true,
-                templateUrl: "templates/menu.html",
-                controller: 'TodoCtrl'
+            .state('app.tasks', {
+                url: "/app/tasks",
+               // abstract: true,
+                templateUrl: "templates/tasks.html",
+                controller: 'TasksCtrl'
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app');
-    });
+        $urlRouterProvider.otherwise('/app/tasks');
+    });*/
