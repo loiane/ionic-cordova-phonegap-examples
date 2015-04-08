@@ -7,8 +7,13 @@ angular.module('tasks.controllers', ['ionic'])
         };
 
         //setup DB
-        TasksService.createDB();
+        document.addEventListener("deviceready", onDeviceReady, false);
 
+        function onDeviceReady() {
+            TasksService.createDB();
+
+            $scope.loadTasks();
+        }
 
         //load tasks
         $scope.loadTasks = function() {
@@ -17,13 +22,10 @@ angular.module('tasks.controllers', ['ionic'])
             });
         };
 
-        $scope.loadTasks();
-
 
         var createTask = function(taskName) {
-            TasksService.create(taskName).then(function(){
-                $scope.loadTasks();
-            });
+            TasksService.add(taskName);
+            $scope.loadTasks();
         };
 
         $scope.add = function() {
